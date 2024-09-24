@@ -10,19 +10,19 @@ export default function Textform(props) {
         let newText =text.toUpperCase();
         setText(newText);
         console.log("handleUpClick");
-    }
+    };
     
     const handleLowClick=()=>{
         let newText = text.toLowerCase();
         setText(newText);
         console.log("handleLowClick");
-    }
+    };
 
 // for re edit text area
     const  handleOnChange=(event)=>{
         console.log("handleOnChange");
         setText(event.target.value);
-    }
+    };
 
 //  count the words
     const countWords=(text)=>{
@@ -32,7 +32,7 @@ export default function Textform(props) {
     else{
         return text.trim().split(" ").length;
     }
-    }
+    };
 
 //  change the color of text 
     const changeTextColor=()=>{
@@ -54,7 +54,7 @@ export default function Textform(props) {
             newColor='black';
         }
         setTextColor(newColor);
-    }
+    };
 
 // count the vowels and consonants
    const countVowelsConsonants=(text)=>{
@@ -71,9 +71,13 @@ export default function Textform(props) {
        }
     }
     return {vowels:vowelsCount, consonants:consonantsCount};
-   }
+   };
    const {vowels,consonants} = countVowelsConsonants(text);
-    
+   
+// clear the text
+   const clearText=()=>{
+    setText("");
+   };
   return (
     <>
     <div className="container">
@@ -82,17 +86,19 @@ export default function Textform(props) {
       <textarea className="form-control" onChange={handleOnChange} style={{color:textColor}}
        id="exampleFormControlTextarea1" rows="10" value={text}></textarea>
 </div>
-<button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Upper</button>
-<button className="btn btn-primary mx-2" onClick={handleLowClick}>Convert to Lower</button>
-<button className='btn btn-primary mx-2' onClick={changeTextColor}>Change Text Color</button>
-    </div>
-    <div className='container mx-2'>
-        <h1>Your Text Summary</h1>
+<button className='btn btn-primary mx-2' disabled={!text} onClick={clearText}>clearText</button>
+<button className="btn btn-primary mx-2" disabled={!text} onClick={handleUpClick}>Convert to Upper</button>
+<button className="btn btn-primary mx-2" disabled={!text} onClick={handleLowClick}>Convert to Lower</button>
+<button className='btn btn-primary mx-2' disabled={!text} onClick={changeTextColor}>Change Text Color</button>
+<h1 className='mx-2'>Your Text Summary</h1>
         <p>{countWords(text)} Words and {text.length} Characters</p>
         <p>{0.008* text.trim().split("").length} Minutes read time.</p>
         <p>{vowels}: Vowels and {consonants}: Consonants </p>
         <h1>Preview</h1>
         <h4 style={{color:textColor}}>{text}</h4>
+    </div>
+    <div className='container mx-2'>
+       
     </div>
     </>
   )
