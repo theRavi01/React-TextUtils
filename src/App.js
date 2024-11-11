@@ -16,7 +16,7 @@ function App() {
         <div>
         <Navbar  tittle="TextUtils" aboutText="About TextUtils" />
           <Routes>
-            <Route path="/" element={<Textform heading="Enter the Text to Analyze"/>} />
+            <Route path="" element={<Textform heading="Enter the Text to Analyze"/>} />
             <Route path="/about" element={<About />} />
           </Routes>
         </div>
